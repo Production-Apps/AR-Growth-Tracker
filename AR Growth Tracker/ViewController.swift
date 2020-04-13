@@ -20,14 +20,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        debuggingOptions()
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,8 +40,39 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+    
+    //MARK: - Custom Methods
+    
+    func debuggingOptions() {
+        
+        //Use to show dots when a plane has been detected
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        
+    }
+    
+    //Create a dot to be place at the location where the user touches on the screen
+    func addDot(at hitResult: ARHitTestResult) {
+        print(hitResult)
+    }
+    
+    
 
     // MARK: - ARSCNViewDelegate
+    
+    //Grab the location of the touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("Touched!")
+        
+        if let touchLocation = touches.first?.location(in: sceneView){
+            
+            let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)
+            
+            if let hitResult = hitTestResults.first {
+                addDot(at: hitResult)
+            }
+        }
+    }
+    
     
 /*
     // Override to create and configure nodes for anchors added to the view's session.
@@ -72,4 +97,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+
 }
