@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0438D780244605B900FF779C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438D77F244605B900FF779C /* SettingsViewController.swift */; };
+		0438D7822446061A00FF779C /* JornalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438D7812446061A00FF779C /* JornalTableViewController.swift */; };
+		0438D7842446067D00FF779C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438D7832446067D00FF779C /* DetailViewController.swift */; };
 		04CEEB592444AB06002E5E44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEEB582444AB06002E5E44 /* AppDelegate.swift */; };
 		04CEEB5B2444AB06002E5E44 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEEB5A2444AB06002E5E44 /* art.scnassets */; };
-		04CEEB5D2444AB06002E5E44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEEB5C2444AB06002E5E44 /* ViewController.swift */; };
+		04CEEB5D2444AB06002E5E44 /* AIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEEB5C2444AB06002E5E44 /* AIViewController.swift */; };
 		04CEEB602444AB06002E5E44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CEEB5E2444AB06002E5E44 /* Main.storyboard */; };
 		04CEEB622444AB0B002E5E44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CEEB612444AB0B002E5E44 /* Assets.xcassets */; };
 		04CEEB652444AB0B002E5E44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CEEB632444AB0B002E5E44 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0438D77F244605B900FF779C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0438D7812446061A00FF779C /* JornalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JornalTableViewController.swift; sourceTree = "<group>"; };
+		0438D7832446067D00FF779C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		04CEEB552444AB06002E5E44 /* AR Growth Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR Growth Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CEEB582444AB06002E5E44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04CEEB5A2444AB06002E5E44 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		04CEEB5C2444AB06002E5E44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		04CEEB5C2444AB06002E5E44 /* AIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIViewController.swift; sourceTree = "<group>"; };
 		04CEEB5F2444AB06002E5E44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04CEEB612444AB0B002E5E44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04CEEB642444AB0B002E5E44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +43,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04AD383E2445FD9A0051DF18 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04CEEB5E2444AB06002E5E44 /* Main.storyboard */,
+				04CEEB632444AB0B002E5E44 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04AD383F2445FDA40051DF18 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				04CEEB5C2444AB06002E5E44 /* AIViewController.swift */,
+				0438D7812446061A00FF779C /* JornalTableViewController.swift */,
+				0438D7832446067D00FF779C /* DetailViewController.swift */,
+				0438D77F244605B900FF779C /* SettingsViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		04AD38402445FDD10051DF18 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				04CEEB5A2444AB06002E5E44 /* art.scnassets */,
+				04CEEB582444AB06002E5E44 /* AppDelegate.swift */,
+				04CEEB612444AB0B002E5E44 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		04CEEB4C2444AB06002E5E44 = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +92,9 @@
 		04CEEB572444AB06002E5E44 /* AR Growth Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				04CEEB582444AB06002E5E44 /* AppDelegate.swift */,
-				04CEEB5A2444AB06002E5E44 /* art.scnassets */,
-				04CEEB5C2444AB06002E5E44 /* ViewController.swift */,
-				04CEEB5E2444AB06002E5E44 /* Main.storyboard */,
-				04CEEB612444AB0B002E5E44 /* Assets.xcassets */,
-				04CEEB632444AB0B002E5E44 /* LaunchScreen.storyboard */,
+				04AD383F2445FDA40051DF18 /* View Controllers */,
+				04AD383E2445FD9A0051DF18 /* Views */,
+				04AD38402445FDD10051DF18 /* Resources */,
 				04CEEB662444AB0B002E5E44 /* Info.plist */,
 			);
 			path = "AR Growth Tracker";
@@ -139,8 +172,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CEEB5D2444AB06002E5E44 /* ViewController.swift in Sources */,
+				04CEEB5D2444AB06002E5E44 /* AIViewController.swift in Sources */,
 				04CEEB592444AB06002E5E44 /* AppDelegate.swift in Sources */,
+				0438D7842446067D00FF779C /* DetailViewController.swift in Sources */,
+				0438D780244605B900FF779C /* SettingsViewController.swift in Sources */,
+				0438D7822446061A00FF779C /* JornalTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

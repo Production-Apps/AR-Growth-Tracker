@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="AR_Growth_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="AIViewController" customModule="AR_Growth_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -24,8 +24,16 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <navigationItem key="navigationItem" id="269-AB-eBC">
-                        <barButtonItem key="leftBarButtonItem" title="Clear" id="X89-k9-Vrl"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="KWO-tu-cL8"/>
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="X89-k9-Vrl">
+                            <connections>
+                                <action selector="clearDotsButtonPressed:" destination="BV1-FR-VrT" id="t0b-qb-qb6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="KWO-tu-cL8">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="BV1-FR-VrT" id="Iet-v2-t9y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
@@ -38,13 +46,13 @@
         <!--Jormal-->
         <scene sceneID="JFu-tN-WXM">
             <objects>
-                <tableViewController id="S6I-Vc-J2I" sceneMemberID="viewController">
+                <tableViewController id="S6I-Vc-J2I" customClass="JornalTableViewController" customModule="AR_Growth_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mbd-X2-X0p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="amz-PC-cml">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCellSegue" id="amz-PC-cml">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="amz-PC-cml" id="6vo-eu-7QP">
@@ -67,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="396.42857142857139"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="g1k-Nf-8qe">
             <objects>
-                <viewController id="rKA-AU-0Pw" sceneMemberID="viewController">
+                <viewController id="rKA-AU-0Pw" customClass="DetailViewController" customModule="AR_Growth_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="alS-x9-Pge">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,6 +97,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ubI-KR-Lfi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qAN-Dk-JyF">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -105,7 +114,7 @@
         <!--Settings-->
         <scene sceneID="Ey4-xW-eq7">
             <objects>
-                <viewController id="HRt-Cn-YTB" sceneMemberID="viewController">
+                <viewController id="HRt-Cn-YTB" customClass="SettingsViewController" customModule="AR_Growth_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3OU-Hg-OZV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class AIViewController: UIViewController, ARSCNViewDelegate {
 
     
     //MARK: - Properties
@@ -56,6 +56,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //MARK: - Actions
     
 
+    @IBAction func clearDotsButtonPressed(_ sender: UIBarButtonItem) {
+        clearAll()
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+    }
     
     
     
@@ -141,6 +147,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(textNode)
     }
     
+    func clearAll(){
+        //Remove the previuos label to create a new one to prevent more than one at the same time
+        textNode.removeFromParentNode()
+        
+        for dot in dotNodes{
+            dot.removeFromParentNode()
+        }
+        
+        dotNodes = [SCNNode]()
+    }
     
 
     // MARK: - ARSCNViewDelegate
@@ -155,7 +171,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 dot.removeFromParentNode()
             }
             dotNodes = [SCNNode]()
-            
         }
         
         
