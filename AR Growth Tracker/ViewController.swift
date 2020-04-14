@@ -12,10 +12,16 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+    
+    //MARK: - Properties
+    
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var outputImage: UIButton!
     
+    var dotNodes = [SCNNode]()
     
+    
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +50,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
+    
     //MARK: - Actions
     
     @IBAction func takeScreenshotAction(_ sender: UIButton) {
@@ -65,10 +72,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func addDot(at hitResult: ARHitTestResult) {
         
         //Create Dot
-        let sphere = SCNSphere(radius: 0.005)
+        let dot = SCNSphere(radius: 0.005)
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.red
-        sphere.materials = [material]
+        dot.materials = [material]
         
         //Get Location coodinates
         let x = hitResult.worldTransform.columns.3.x
@@ -78,16 +85,41 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //Postion on the scene
         let node = SCNNode()
         node.position = SCNVector3Make(x, y, z)
-        node.geometry = sphere
+        node.geometry = dot
         
         //Place it on the scene
         sceneView.scene.rootNode.addChildNode(node)
         
         //Add shadows
         sceneView.autoenablesDefaultLighting = true
+        
+        //Add dots to array
+        dotNodes.append(node)
+        
+        if dotNodes.count >= 2 {
+            caculateDistance()
+        }        
     }
     
+    func caculateDistance() {
+        let start = dotNodes[0]
+        let end = dotNodes[1]
+        
+        let a = end.position.x - start.position.x
+        let b = end.position.y - start.position.y
+        let c = end.position.z - start.position.z
+        
+        let distance = sqrt(pow(a,2) + pow(b,2) + pow(c,2) )
+        
+        distanceLabel(text: "\(abs(distance))")
+        
+    }
     
+    func distanceLabel(text: String)  {
+        let textGeometry = SCNText(string: text, extrusionDepth: 1.0)
+        
+        
+    }
 
     // MARK: - ARSCNViewDelegate
     
