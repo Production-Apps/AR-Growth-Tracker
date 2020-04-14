@@ -16,7 +16,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //MARK: - Properties
     
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet weak var outputImage: UIButton!
     
     var dotNodes = [SCNNode]()
     
@@ -40,6 +39,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = [.horizontal, .vertical]
 
         // Run the view's session
         sceneView.session.run(configuration)
@@ -55,9 +55,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: - Actions
     
-    @IBAction func takeScreenshotAction(_ sender: UIButton) {
-        print("Tokk screenshot")
-    }
+
     
     
     
@@ -86,7 +84,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         //Postion on the scene
         let node = SCNNode()
-        node.position = SCNVector3Make(x, y, z)
+        node.position = SCNVector3(x, y, z)
         node.geometry = dot
         
         //Place it on the scene
@@ -113,27 +111,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let distance = sqrt(pow(a,2) + pow(b,2) + pow(c,2) )
         
-        distanceLabel(text: "\(abs(distance))", atPosition: end.position)
+        let stringValue = String(format: "%.2f", abs(distance))
+        
+        distanceLabel(value: stringValue, startPosition: start, endPosition: end)
         
     }
     
-    func distanceLabel(text: String, atPosition position: SCNVector3)  {
+    func distanceLabel(value: String, startPosition: SCNNode, endPosition: SCNNode)  {
         
         //Remove the previuos label to create a new one to prevent more than one at the same time
         textNode.removeFromParentNode()
         
-        let textGeometry = SCNText(string: text, extrusionDepth: 1.0)
+        let textGeometry = SCNText(string: value, extrusionDepth: 1.0)
         
         textGeometry.firstMaterial?.diffuse.contents = UIColor.red
         
         textNode = SCNNode(geometry: textGeometry)
         
-        textNode.position = SCNVector3Make(position.x, position.y + 0.01, position.z)
+        let minPosition = startPosition.position
+        let maxPosition = endPosition.position
+        let x = ((maxPosition.x + minPosition.x)/2.0)
+        let y = (maxPosition.y + minPosition.y)/2.0 + 0.01
+        let z = (maxPosition.z + minPosition.z)/2.0
+        
+        textNode.position = SCNVector3(x, y, z)
         
         textNode.scale = SCNVector3(0.01, 0.01, 0.01)
         
         sceneView.scene.rootNode.addChildNode(textNode)
     }
+    
+    
 
     // MARK: - ARSCNViewDelegate
     
