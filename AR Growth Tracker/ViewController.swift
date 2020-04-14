@@ -13,6 +13,9 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var outputImage: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
+    //MARK: - Actions
+    
+    @IBAction func takeScreenshotAction(_ sender: UIButton) {
+        print("Tokk screenshot")
+    }
+    
+    
+    
     //MARK: - Custom Methods
     
     func debuggingOptions() {
@@ -53,6 +64,30 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //Create a dot to be place at the location where the user touches on the screen
     func addDot(at hitResult: ARHitTestResult) {
         print(hitResult)
+        
+        let location = SCNMatrix4.init(hitResult.worldTransform)
+
+        let x = location.m41
+        let y = location.m42
+        let z = location.m43
+        
+        let sphere = SCNSphere(radius: 0.01)
+        
+        let material = SCNMaterial()
+        
+        material.diffuse.contents = UIColor.red
+        
+        sphere.materials = [material]
+        
+        let node = SCNNode()
+        
+        node.position = SCNVector3Make(x, y, z)
+        
+        node.geometry = sphere
+        
+        sceneView.scene.rootNode.addChildNode(node)
+        
+        sceneView.autoenablesDefaultLighting = true
     }
     
     
@@ -61,7 +96,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     //Grab the location of the touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("Touched!")
         
         if let touchLocation = touches.first?.location(in: sceneView){
             
