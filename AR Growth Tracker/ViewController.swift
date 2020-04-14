@@ -20,6 +20,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     var dotNodes = [SCNNode]()
     
+    var textNode = SCNNode()
+    
     
     //MARK: - Life Cycle
     
@@ -111,20 +113,43 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let distance = sqrt(pow(a,2) + pow(b,2) + pow(c,2) )
         
-        distanceLabel(text: "\(abs(distance))")
+        distanceLabel(text: "\(abs(distance))", atPosition: end.position)
         
     }
     
-    func distanceLabel(text: String)  {
+    func distanceLabel(text: String, atPosition position: SCNVector3)  {
+        
+        //Remove the previuos label to create a new one to prevent more than one at the same time
+        textNode.removeFromParentNode()
+        
         let textGeometry = SCNText(string: text, extrusionDepth: 1.0)
         
+        textGeometry.firstMaterial?.diffuse.contents = UIColor.red
         
+        textNode = SCNNode(geometry: textGeometry)
+        
+        textNode.position = SCNVector3Make(position.x, position.y + 0.01, position.z)
+        
+        textNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        
+        sceneView.scene.rootNode.addChildNode(textNode)
     }
 
     // MARK: - ARSCNViewDelegate
     
     //Grab the location of the touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        //Prevent user from positioning more than 2 dots
+        //If user enter a third dot it will clear the previuos dots to start a new mesurement
+        if dotNodes.count >= 2 {
+            for dot in dotNodes{
+                dot.removeFromParentNode()
+            }
+            dotNodes = [SCNNode]()
+            
+        }
+        
         
         if let touchLocation = touches.first?.location(in: sceneView){
             
