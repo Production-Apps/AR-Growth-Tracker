@@ -63,30 +63,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     //Create a dot to be place at the location where the user touches on the screen
     func addDot(at hitResult: ARHitTestResult) {
-        print(hitResult)
         
-        let location = SCNMatrix4.init(hitResult.worldTransform)
-
-        let x = location.m41
-        let y = location.m42
-        let z = location.m43
-        
-        let sphere = SCNSphere(radius: 0.01)
-        
+        //Create Dot
+        let sphere = SCNSphere(radius: 0.005)
         let material = SCNMaterial()
-        
         material.diffuse.contents = UIColor.red
-        
         sphere.materials = [material]
         
+        //Get Location coodinates
+        let x = hitResult.worldTransform.columns.3.x
+        let y = hitResult.worldTransform.columns.3.y
+        let z = hitResult.worldTransform.columns.3.z
+        
+        //Postion on the scene
         let node = SCNNode()
-        
         node.position = SCNVector3Make(x, y, z)
-        
         node.geometry = sphere
         
+        //Place it on the scene
         sceneView.scene.rootNode.addChildNode(node)
         
+        //Add shadows
         sceneView.autoenablesDefaultLighting = true
     }
     
